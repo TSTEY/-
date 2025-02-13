@@ -366,17 +366,17 @@
           </tr>
         </thead>
         <tbody>
-          {% for i in header %}
+          {% for i in block_four %}
           <tr>
             <td>{{i.id}}</td>
             <td>{{i.name}}</td>
             <td>{{i.text}}</td>
             <td>{{i.button}}</td>
             <td>
-              <a href="{% url '' i.id %}">
+              <a href="{% url 'update_block_four' i.id %}">
                 <button class="edit-button">Edit</button>
               </a>
-              <a href="{% url '' i.id %}">
+              <a href="{% url 'delete_block_four' i.id %}">
                 <button class="delete-button">Delete</button>
               </a>
             </td>
@@ -384,10 +384,10 @@
           {% endfor %}
         </tbody>
       </table>
-      {% if header %}
+      {% if block_four %}
       {% else %}
-      <a href="">
-        <button class="styled-button">Create </button>
+      <a href="{% url 'create_block_four' %}">
+        <button class="styled-button">Create Block Four</button>
       </a>
       {% endif %}
       <!-- /.content -->

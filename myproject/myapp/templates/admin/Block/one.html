@@ -359,24 +359,26 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>name</th>
-            <th>text</th>
-            <th>button</th>
+            <th>name_1</th>
+            <th>name_2</th>
+            <th>button_1</th>
+            <th>button_2</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {% for i in header %}
+          {% for i in block_one %}
           <tr>
             <td>{{i.id}}</td>
-            <td>{{i.name}}</td>
-            <td>{{i.text}}</td>
-            <td>{{i.button}}</td>
+            <td>{{i.name_1}}</td>
+            <td>{{i.name_2}}</td>
+            <td>{{i.button_1}}</td>
+            <td>{{i.button_2}}</td>
             <td>
-              <a href="{% url '' i.id %}">
+              <a href="{% url 'update_block_one' i.id %}">
                 <button class="edit-button">Edit</button>
               </a>
-              <a href="{% url '' i.id %}">
+              <a href="{% url 'delete_block_one' i.id %}">
                 <button class="delete-button">Delete</button>
               </a>
             </td>
@@ -384,10 +386,10 @@
           {% endfor %}
         </tbody>
       </table>
-      {% if header %}
+      {% if block_one %}
       {% else %}
-      <a href="">
-        <button class="styled-button">Create </button>
+      <a href="{% url 'create_block_one' %}">
+        <button class="styled-button">Create Block One</button>
       </a>
       {% endif %}
       <!-- /.content -->

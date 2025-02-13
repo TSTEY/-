@@ -2,52 +2,64 @@ from django import forms
 from . import models
 
 class HeaderForm(forms.ModelForm):
-    model = models.Header
-    fields = ['name','address']
+    class Meta:
+        model = models.Header
+        fields = ['name','address']
     
 class BlockOneForm(forms.ModelForm):
-    model = models.BlockOne
-    fields = ['name_1','name_2','button_1','button_2']
+    class Meta:
+        model = models.BlockOne
+        fields = ['name_1','name_2','button_1','button_2']
     
 class BlockTwoForm(forms.ModelForm):
-    model = models.BlockTwo
-    fields = ['name','text']
+    class Meta:
+        model = models.BlockTwo
+        fields = ['name','text']
     
 class BlockThreeForm(forms.ModelForm):
-    model = models.BlockThree
-    fields = ['name','text']
+    class Meta:
+        model = models.BlockThree
+        fields = ['name','text']
     
 class BlockFourForm(forms.ModelForm):
-    model = models.BlockFour
-    fields = ['name','text','button']
+    class Meta:
+        model = models.BlockFour
+        fields = ['name','text','button']
     
 class BlockFiveForm(forms.ModelForm):
-    model = models.BlockFive
-    fields = ['images','name','profession','text']
+    class Meta:
+        model = models.BlockFive
+        fields = ['imges','name','profession','text']
     
 class BlockSixForm(forms.ModelForm):
-    model = models.BlockSix
-    fields = ['number','name']
+    class Meta:
+        model = models.BlockSix
+        fields = ['number','name']
     
 class BlockSevenForm(forms.ModelForm):
-    model = models.BlockSeven
-    fields = ['name','text']
+    class Meta:
+        model = models.BlockSeven
+        fields = ['name','text']
     
 class BlockEightForm(forms.ModelForm):
-    model = models.BlockEight
-    fields = ['name','text','text_2','text_3','text_4']
+    class Meta:
+        model = models.BlockEight
+        fields = ['name','text','text_2','text_3','text_4']
     
 class BlockNineForm(forms.ModelForm):
-    model = models.BlockNine
-    fields = ['name','text']
+    class Meta:
+        model = models.BlockNine
+        fields = ['name','text']
     
 class BlockTenForm(forms.ModelForm):
-    model = models.BlockTen
-    fields = ['name','text','button']
+    class Meta:
+        model = models.BlockTen
+        fields = ['name','text','button']
     
 class FooterForm(forms.ModelForm):
-    model = models.Footer
-    fields = ['name_1','name_2','name_3','name_4']
+    class Meta:
+        model = models.Footer
+        fields = ['name_1','name_2','name_3','name_4']
     
     
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm

@@ -359,24 +359,26 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>name</th>
-            <th>text</th>
-            <th>button</th>
+            <th>name_1</th>
+            <th>name_2</th>
+            <th>name_3</th>
+            <th>name_4</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {% for i in header %}
+          {% for i in footer %}
           <tr>
             <td>{{i.id}}</td>
-            <td>{{i.name}}</td>
-            <td>{{i.text}}</td>
-            <td>{{i.button}}</td>
+            <td>{{i.name_1}}</td>
+            <td>{{i.name_2}}</td>
+            <td>{{i.name_3}}</td>
+            <td>{{i.name_4}}</td>
             <td>
-              <a href="{% url '' i.id %}">
+              <a href="{% url 'update_footer' i.id %}">
                 <button class="edit-button">Edit</button>
               </a>
-              <a href="{% url '' i.id %}">
+              <a href="{% url 'delete_footer' i.id %}">
                 <button class="delete-button">Delete</button>
               </a>
             </td>
@@ -384,12 +386,9 @@
           {% endfor %}
         </tbody>
       </table>
-      {% if header %}
-      {% else %}
-      <a href="">
-        <button class="styled-button">Create </button>
+      <a href="{% url 'create_footer' %}">
+        <button class="styled-button">Create Footer</button>
       </a>
-      {% endif %}
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
