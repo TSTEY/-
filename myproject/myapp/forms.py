@@ -74,5 +74,5 @@ class CustomAuthenticationForm(AuthenticationForm):
                 raise forms.ValidationError("Пароли не совпадают.")
             if len(password1) < 6:
                 raise forms.ValidationError("Пароль должен быть длиной не менее 6 символов.")
-            
+            # Добавьте свои проверки, если нужно
             return password2
