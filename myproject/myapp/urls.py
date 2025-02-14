@@ -1,6 +1,23 @@
-from django.urls import path
 from . import views
+from django.urls import path, re_path
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from rest_framework.permissions import AllowAny
 
+
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Header API",
+        default_version="v1",
+        description="API для управления Header объектами",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="contact@example.com"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(AllowAny,),
+)
 
 urlpatterns = [
     path('',views.index,name='index'),
@@ -84,4 +101,44 @@ urlpatterns = [
     path('update_footer/<int:user_id>/',views.update_footer,name='update_footer'),
     path('delete_footer/<int:user_id>/',views.delete_footer,name='delete_footer'),
     
+    # API
+    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    
+    path('api/header/', views.HeaderAPIView.as_view(), name='header_list_create'),
+    path('api/header/<int:pk_id>/', views.HeaderAPIView.as_view(), name='header_detail_update_delete'),
+    
+    path('api/BlockOne/', views.BlockOneAPIView.as_view(), name='BlockOne_list_create'),
+    path('api/BlockOne/<int:pk_id>/', views.BlockOneAPIView.as_view(), name='BlockOne_detail_update_delete'),
+    
+    path('api/BlockTwo/', views.BlockTwoAPIView.as_view(), name='BlockTwo_list_create'),
+    path('api/BlockTwo/<int:pk_id>/', views.BlockTwoAPIView.as_view(), name='BlockTwo_detail_update_delete'),
+    
+    path('api/BlockThree/', views.BlockThreeAPIView.as_view(), name='BlockThree_list_create'),
+    path('api/BlockThree/<int:pk_id>/', views.BlockThreeAPIView.as_view(), name='BlockThree_detail_update_delete'),
+    
+    path('api/BlockFour/', views.BlockFourAPIView.as_view(), name='BlockFour_list_create'),
+    path('api/BlockFour/<int:pk_id>/', views.BlockFourAPIView.as_view(), name='BlockFour_detail_update_delete'),
+    
+    path('api/BlockFive/', views.BlockFiveAPIView.as_view(), name='BlockFive_list_create'),
+    path('api/BlockFive/<int:pk_id>/', views.BlockFiveAPIView.as_view(), name='BlockFive_detail_update_delete'),
+    
+    path('api/BlockSix/', views.BlockSixAPIView.as_view(), name='BlockSix_list_create'),
+    path('api/BlockSix/<int:pk_id>/', views.BlockSixAPIView.as_view(), name='BlockSix_detail_update_delete'),
+    
+    path('api/BlockSeven/', views.BlockSevenAPIView.as_view(), name='BlockSeven_list_create'),
+    path('api/BlockSeven/<int:pk_id>/', views.BlockSevenAPIView.as_view(), name='BlockSeven_detail_update_delete'),
+    
+    path('api/BlockEight/', views.BlockEightAPIView.as_view(), name='BlockEight_list_create'),
+    path('api/BlockEight/<int:pk_id>/', views.BlockEightAPIView.as_view(), name='BlockEight_detail_update_delete'),
+    
+    path('api/BlockNine/', views.BlockNineAPIView.as_view(), name='BlockNine_list_create'),
+    path('api/BlockNine/<int:pk_id>/', views.BlockNineAPIView.as_view(), name='BlockNine_detail_update_delete'),
+    
+    path('api/BlockTen/', views.BlockTenAPIView.as_view(), name='BlockTen_list_create'),
+    path('api/BlockTen/<int:pk_id>/', views.BlockTenAPIView.as_view(), name='BlockTen_detail_update_delete'),
+    
+    path('api/Footer/', views.FooterAPIView.as_view(), name='Footer_list_create'),
+    path('api/Footer/<int:pk_id>/', views.FooterAPIView.as_view(), name='Footer_detail_update_delete'),
 ]

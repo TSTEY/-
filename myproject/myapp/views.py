@@ -1,6 +1,12 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .import models
 from . import forms
+from . import serializer
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 def index(request):
     return render(request,'index.html')
@@ -416,15 +422,474 @@ def delete_footer(request,user_id):
 
 
 
+# API
+class HeaderAPIView(APIView):
+    def get(self, request, head_id=None):
+        if head_id:
+            head = get_object_or_404(models.Header, id=head_id)
+            serializers = serializer.HeaderSerializer(head)
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        
+        heads = models.Header.objects.all()
+        serializers = serializer.HeaderSerializer(heads, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
 
+    def post(self, request):
+        serializers = serializer.HeaderSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def put(self, request, head_id):
+        head = get_object_or_404(models.Header, id=head_id)
+        serializers = serializer.HeaderSerializer(head, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def patch(self, request, head_id):
+        head = get_object_or_404(models.Header, id=head_id)
+        serializers = serializer.HeaderSerializer(head, data=request.data, partial=True)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def delete(self, request, head_id):
+        head = get_object_or_404(models.Header, id=head_id)
+        head.delete()
+        return Response({"message": "Object deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
+class BlockOneAPIView(APIView):
+    def get(self, request, head_id=None):
+        if head_id:
+            head = get_object_or_404(models.BlockOne, id=head_id)
+            serializers = serializer.BlockOneSerializer(head)
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        
+        heads = models.BlockOne.objects.all()
+        serializers = serializer.BlockOneSerializer(heads, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
 
+    def post(self, request):
+        serializers = serializer.BlockOneSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def put(self, request, head_id):
+        head = get_object_or_404(models.BlockOne, id=head_id)
+        serializers = serializer.BlockOneSerializer(head, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def patch(self, request, head_id):
+        head = get_object_or_404(models.BlockOne, id=head_id)
+        serializers = serializer.BlockOneSerializer(head, data=request.data, partial=True)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def delete(self, request, head_id):
+        head = get_object_or_404(models.BlockOne, id=head_id)
+        head.delete()
+        return Response({"message": "Object deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+class BlockTwoAPIView(APIView):
+    def get(self, request, head_id=None):
+        if head_id:
+            head = get_object_or_404(models.BlockTwo, id=head_id)
+            serializers = serializer.BlockTwoSerializer(head)
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        
+        heads = models.BlockTwo.objects.all()
+        serializers = serializer.BlockTwoSerializer(heads, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializers = serializer.BlockTwoSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, head_id):
+        head = get_object_or_404(models.BlockTwo, id=head_id)
+        serializers = serializer.BlockTwoSerializer(head, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, head_id):
+        head = get_object_or_404(models.BlockTwo, id=head_id)
+        serializers = serializer.BlockTwoSerializer(head, data=request.data, partial=True)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, head_id):
+        head = get_object_or_404(models.BlockTwo, id=head_id)
+        head.delete()
+        return Response({"message": "Object deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+class BlockThreeAPIView(APIView):
+    def get(self, request, head_id=None):
+        if head_id:
+            head = get_object_or_404(models.BlockThree, id=head_id)
+            serializers = serializer.BlockThreeSerializer(head)
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        
+        heads = models.BlockThree.objects.all()
+        serializers = serializer.BlockThreeSerializer(heads, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializers = serializer.BlockThreeSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, head_id):
+        head = get_object_or_404(models.BlockThree, id=head_id)
+        serializers = serializer.BlockThreeSerializer(head, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, head_id):
+        head = get_object_or_404(models.BlockThree, id=head_id)
+        serializers = serializer.BlockThreeSerializer(head, data=request.data, partial=True)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, head_id):
+        head = get_object_or_404(models.BlockThree, id=head_id)
+        head.delete()
+        return Response({"message": "Object deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+class BlockFourAPIView(APIView):
+    def get(self, request, head_id=None):
+        if head_id:
+            head = get_object_or_404(models.BlockFour, id=head_id)
+            serializers = serializer.BlockFourSerializer(head)
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        
+        heads = models.BlockFour.objects.all()
+        serializers = serializer.BlockFourSerializer(heads, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializers = serializer.BlockFourSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, head_id):
+        head = get_object_or_404(models.BlockFour, id=head_id)
+        serializers = serializer.BlockFourSerializer(head, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, head_id):
+        head = get_object_or_404(models.BlockFour, id=head_id)
+        serializers = serializer.BlockFourSerializer(head, data=request.data, partial=True)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, head_id):
+        head = get_object_or_404(models.BlockFour, id=head_id)
+        head.delete()
+        return Response({"message": "Object deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+class BlockFiveAPIView(APIView):
+    def get(self, request, head_id=None):
+        if head_id:
+            head = get_object_or_404(models.BlockFive, id=head_id)
+            serializers = serializer.BlockFiveSerializer(head)
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        
+        heads = models.BlockFive.objects.all()
+        serializers = serializer.BlockFiveSerializer(heads, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializers = serializer.BlockFiveSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, head_id):
+        head = get_object_or_404(models.BlockFive, id=head_id)
+        serializers = serializer.BlockFiveSerializer(head, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, head_id):
+        head = get_object_or_404(models.BlockFive, id=head_id)
+        serializers = serializer.BlockFiveSerializer(head, data=request.data, partial=True)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, head_id):
+        head = get_object_or_404(models.BlockFive, id=head_id)
+        head.delete()
+        return Response({"message": "Object deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+class BlockSixAPIView(APIView):
+    def get(self, request, head_id=None):
+        if head_id:
+            head = get_object_or_404(models.BlockSix, id=head_id)
+            serializers = serializer.BlockSixSerializer(head)
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        
+        heads = models.BlockSix.objects.all()
+        serializers = serializer.BlockSixSerializer(heads, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializers = serializer.BlockSixSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, head_id):
+        head = get_object_or_404(models.BlockSix, id=head_id)
+        serializers = serializer.BlockSixSerializer(head, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, head_id):
+        head = get_object_or_404(models.BlockSix, id=head_id)
+        serializers = serializer.BlockSixSerializer(head, data=request.data, partial=True)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, head_id):
+        head = get_object_or_404(models.BlockSix, id=head_id)
+        head.delete()
+        return Response({"message": "Object deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+class BlockSevenAPIView(APIView):
+    def get(self, request, head_id=None):
+        if head_id:
+            head = get_object_or_404(models.BlockSeven, id=head_id)
+            serializers = serializer.BlockSevenSerializer(head)
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        
+        heads = models.BlockSeven.objects.all()
+        serializers = serializer.BlockSevenSerializer(heads, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializers = serializer.BlockSevenSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, head_id):
+        head = get_object_or_404(models.BlockSeven, id=head_id)
+        serializers = serializer.BlockSevenSerializer(head, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, head_id):
+        head = get_object_or_404(models.BlockSeven, id=head_id)
+        serializers = serializer.BlockSevenSerializer(head, data=request.data, partial=True)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, head_id):
+        head = get_object_or_404(models.BlockSeven, id=head_id)
+        head.delete()
+        return Response({"message": "Object deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+class BlockEightAPIView(APIView):
+    def get(self, request, head_id=None):
+        if head_id:
+            head = get_object_or_404(models.BlockEight, id=head_id)
+            serializers = serializer.BlockEightSerializer(head)
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        
+        heads = models.BlockEight.objects.all()
+        serializers = serializer.BlockEightSerializer(heads, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializers = serializer.BlockEightSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, head_id):
+        head = get_object_or_404(models.BlockEight, id=head_id)
+        serializers = serializer.BlockEightSerializer(head, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, head_id):
+        head = get_object_or_404(models.BlockEight, id=head_id)
+        serializers = serializer.BlockEightSerializer(head, data=request.data, partial=True)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, head_id):
+        head = get_object_or_404(models.BlockEight, id=head_id)
+        head.delete()
+        return Response({"message": "Object deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+class BlockNineAPIView(APIView):
+    def get(self, request, head_id=None):
+        if head_id:
+            head = get_object_or_404(models.BlockNine, id=head_id)
+            serializers = serializer.BlockNineSerializer(head)
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        
+        heads = models.BlockNine.objects.all()
+        serializers = serializer.BlockNineSerializer(heads, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializers = serializer.BlockNineSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, head_id):
+        head = get_object_or_404(models.BlockNine, id=head_id)
+        serializers = serializer.BlockNineSerializer(head, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, head_id):
+        head = get_object_or_404(models.BlockNine, id=head_id)
+        serializers = serializer.BlockNineSerializer(head, data=request.data, partial=True)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, head_id):
+        head = get_object_or_404(models.BlockNine, id=head_id)
+        head.delete()
+        return Response({"message": "Object deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+class BlockTenAPIView(APIView):
+    def get(self, request, head_id=None):
+        if head_id:
+            head = get_object_or_404(models.BlockTen, id=head_id)
+            serializers = serializer.BlockTenSerializer(head)
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        
+        heads = models.BlockTen.objects.all()
+        serializers = serializer.BlockTenSerializer(heads, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializers = serializer.BlockTenSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, head_id):
+        head = get_object_or_404(models.BlockTen, id=head_id)
+        serializers = serializer.BlockTenSerializer(head, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, head_id):
+        head = get_object_or_404(models.BlockTen, id=head_id)
+        serializers = serializer.BlockTenSerializer(head, data=request.data, partial=True)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, head_id):
+        head = get_object_or_404(models.BlockTen, id=head_id)
+        head.delete()
+        return Response({"message": "Object deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+class FooterAPIView(APIView):
+    def get(self, request, head_id=None):
+        if head_id:
+            head = get_object_or_404(models.Footer, id=head_id)
+            serializers = serializer.FooterSerializer(head)
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        
+        heads = models.Footer.objects.all()
+        serializers = serializer.FooterSerializer(heads, many=True)
+        return Response(serializers.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializers = serializer.FooterSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, head_id):
+        head = get_object_or_404(models.Footer, id=head_id)
+        serializers = serializer.FooterSerializer(head, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, head_id):
+        head = get_object_or_404(models.Footer, id=head_id)
+        serializers = serializer.FooterSerializer(head, data=request.data, partial=True)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, head_id):
+        head = get_object_or_404(models.Footer, id=head_id)
+        head.delete()
+        return Response({"message": "Object deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
 
 
