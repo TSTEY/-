@@ -38,6 +38,9 @@ urlpatterns = [
     path('block_ten/',views.block_ten,name='block_ten'),
     path('footer/',views.footer,name='footer'),
     
+    path('register/',views.register,name='register'),
+    path('login/',views.user_login,name='login'),
+    
     # Header
     path('create_header/',views.create_header,name='create_header'),
     path('update_header/<int:user_id>/',views.update_header,name='update_header'),
