@@ -9,7 +9,35 @@ from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 
 def index(request):
-    return render(request,'index.html')
+    header = models.Header.objects.all()
+    block_one = models.BlockOne.objects.all()
+    block_two = models.BlockTwo.objects.all()
+    block_three = models.BlockThree.objects.all()
+    block_four = models.BlockFour.objects.all()
+    block_five = models.BlockFive.objects.all()
+    block_six = models.BlockSix.objects.all()
+    block_seven = models.BlockSeven.objects.all()
+    block_eight = models.BlockEight.objects.all()
+    block_nine = models.BlockNine.objects.all()
+    block_ten = models.BlockTen.objects.all()
+    footer = models.Footer.objects.all()
+    
+    body = {
+        'header':header,
+        'block_one':block_one,
+        'block_two':block_two,
+        'block_three':block_three,
+        'block_four':block_four,
+        'block_five':block_five,
+        'block_six':block_six,
+        'block_seven':block_seven,
+        'block_eight':block_eight,
+        'block_nine':block_nine,
+        'block_ten':block_ten,
+        'footer':footer,
+        
+    }
+    return render(request,'index.html',body)
 
 def service_details(request):
     return render(request,'service_details.html')
