@@ -95,6 +95,19 @@
                 <i class="bi bi-gear-fill me-2"></i>
                 Working for your success
               </div>
+              {% if block_one %}
+              {% for i in block_one %}
+              <h1 class="mb-4">{{i.name_1}}</h1>
+
+              <p class="mb-4 mb-md-5">{{i.name_2}}</p>
+
+              <div class="hero-buttons">
+                <a href="#about" class="btn btn-primary me-0 me-sm-2 mx-1">{{i.button_1}}</a>
+                <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="btn btn-link mt-2 mt-sm-0 glightbox">
+                  <i class="bi bi-play-circle me-1"></i>{{i.button_2}}</a>
+              </div>
+              {% endfor %}
+              {% else %}
               <h1 class="mb-4">
                 Maecenas Vitae <br>
                 Consectetur Led <br>
@@ -113,7 +126,7 @@
                   Play Video
                 </a>
               </div>
-
+              {% endif %}
 
             </div>
           </div>
@@ -197,9 +210,15 @@
 
           <div class="col-xl-5" data-aos="fade-up" data-aos-delay="200">
             <span class="about-meta">MORE ABOUT US</span>
+            {% if block_two %}
+            {% for i in block_two %}
+            <h2 class="about-title">{{i.name}}</h2>
+            <p class="about-description">{{i.text}}</p>
+            {% endfor %}
+            {% else %}
             <h2 class="about-title">Voluptas enim suscipit temporibus</h2>
             <p class="about-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-
+            {% endif %}
             <div class="row feature-list-wrapper">
               <div class="col-md-6">
                 <ul class="feature-list">
