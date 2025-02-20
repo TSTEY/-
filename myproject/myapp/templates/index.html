@@ -1071,8 +1071,18 @@
 
           <div class="col-lg-7" data-aos="fade-up" data-aos-delay="300">
             <div class="faq-container">
-              
 
+              {% if block_nine %}
+              {% for i in block_nine %}
+              <div class="faq-item">
+                <h3>{{i.name}}</h3>
+                <div class="faq-content">
+                  <p>{{i.text}}</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+              {% endfor %}
+              {% else %}
               <div class="faq-item faq-active">
                 <h3>Non consectetur a erat nam at lectus urna duis?</h3>
                 <div class="faq-content">
@@ -1120,7 +1130,7 @@
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
-
+              {% endif %}
             </div>
           </div>
 
