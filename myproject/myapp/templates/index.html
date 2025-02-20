@@ -904,7 +904,34 @@
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row g-4 justify-content-center">
+          {% if block_eight %}
+          {% for i in block_eight %}
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="pricing-card">
+              <h3>{{i.name}}</h3>
+              <div class="price">
+                <span class="currency">$</span>
+                <span class="amount">{{i.text}}</span>
+                <span class="period">/ month</span>
+              </div>
+              <p class="description">{{i.text_2}}</p>
 
+              <h4>{{i.text_3}}</h4>
+              <ul class="features-list">
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  {{i.text_4}}
+                </li>
+              </ul>
+
+              <a href="#" class="btn btn-primary">
+                Buy Now
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+          {% else %}
           <!-- Basic Plan -->
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="pricing-card">
@@ -1019,7 +1046,7 @@
               </a>
             </div>
           </div>
-
+          {% endif %}
         </div>
 
       </div>
@@ -1044,6 +1071,7 @@
 
           <div class="col-lg-7" data-aos="fade-up" data-aos-delay="300">
             <div class="faq-container">
+              
 
               <div class="faq-item faq-active">
                 <h3>Non consectetur a erat nam at lectus urna duis?</h3>
